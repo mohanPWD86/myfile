@@ -1,0 +1,18 @@
+stages:
+  - build
+  - deploy
+
+variables:
+  DOCKER_HOST: tcp://13.127.100.122:2375/  
+
+build:
+  stage: build
+  script:
+    - docker-compose -f docker-compose.yml build
+
+deploy:
+  stage: deploy
+  script:
+    - docker-compose -f docker-compose.yml up -d
+  only:
+    - master  
